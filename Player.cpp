@@ -14,6 +14,7 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 }
 
 void Player::keyPressEvent(QKeyEvent *event){
+
     if (event->key() == Qt::Key_Left){
         if (pos().x() > 0)
         setPos(x()-10,y());
@@ -23,6 +24,7 @@ void Player::keyPressEvent(QKeyEvent *event){
         setPos(x()+10,y());
     }
     else if (event->key() == Qt::Key_Space){
+
         Bullet * bullet = new Bullet();
         bullet->setPos(x()+35,y());
         scene()->addItem(bullet);

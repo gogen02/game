@@ -6,6 +6,8 @@
 #include "Health.h"
 #include <QMediaPlayer>
 #include <QGraphicsItem>
+#include <QMovie>
+#include <QLabel>
 
 Game::Game(QWidget *parent){
     scene = new QGraphicsScene();
@@ -18,6 +20,19 @@ Game::Game(QWidget *parent){
     QPixmap bkgnd(":/pictures/background.jpg");
         bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
        scene->setBackgroundBrush(bkgnd);
+       QLabel *blabel = new QLabel();
+       QMovie *bmovie = new QMovie(":/pictures/backgroundgif.gif");
+        blabel->setGeometry(50,50, 400, 400);
+        bmovie->setScaledSize(QSize(400,400));
+        bmovie->setParent(blabel);
+        blabel->setWindowFlag(Qt::FramelessWindowHint);
+        blabel->setAttribute(Qt::WA_NoSystemBackground, true);
+        blabel->setAttribute(Qt::WA_TranslucentBackground, true);
+        blabel->setMovie(bmovie);
+        bmovie->start();
+
+        scene->addWidget(blabel);
+
 
     player = new Player();
     player->setPixmap(QPixmap(":/pictures/spaceship.png").scaled(100,102));

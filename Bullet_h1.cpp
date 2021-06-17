@@ -49,7 +49,14 @@ void Bullet_h1::move_h1(){
         setPos(x()-X,y()+Y);
     } else {
         setPos(x(), y()-10);}
-
+    QLabel *slabel = new QLabel(game);
+    QMovie *smovie = new QMovie(":/pictures/smoke.gif");
+     slabel->setMovie(smovie);
+     slabel->setGeometry(x()-5,y()+10, 40, 40);
+     smovie->setScaledSize(QSize(40,40));
+     slabel->show();
+     smovie->start();
+     connect(smovie,SIGNAL(finished()),slabel,SLOT(deleteLater()));
     if (pos().y() + QRect().height() < 0){
         scene()->removeItem(this);
         delete this;
